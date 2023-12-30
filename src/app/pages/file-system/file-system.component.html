@@ -1,0 +1,23 @@
+@if (pageStatus$ | async){
+  <app-layout-main>
+    <div class="layout-main__left" left>
+      <input
+        type="text"
+        placeholder="Поиск ..."
+        class="layout-main__left--search"
+        (input)="setQueryParamSearch(substring)"
+        [(ngModel)]="substring"
+      >
+          <ng-container *ngFor="let fileList of fileList$ | async ">
+            <app-file-structure [fileList]="fileList" [searchActivated]="searchActivated" [substring]="substring" />
+          </ng-container>
+    </div>
+    <div class="layout-main__right" right>
+      <app-display [activeFile]="activeFile"/>
+    </div>
+  </app-layout-main>
+} @else {
+  <ui-error-block [status]="fileSystemService.isError"/>
+}
+
+

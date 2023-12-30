@@ -1,0 +1,145 @@
+{
+  "fileList": [
+    {
+      "type": "folder",
+      "title": "file-sistem",
+      "description": "file name: file-sistem",
+      "children": [
+        {
+          "type": "folder",
+          "title": "angular",
+          "description": "file name: angular",
+          "children": []
+        },
+        {
+          "type": "folder",
+          "title": "node_modules",
+          "description": "file name: node_modules",
+          "children": []
+        },
+        {
+          "type": "folder",
+          "title": "server",
+          "description": "file name: server",
+          "children": []
+        },
+        {
+          "type": "folder",
+          "title": "src",
+          "description": "file name: src",
+          "children": [
+            {
+              "type": "folder",
+              "title": "app",
+              "description": "file name: app",
+              "children": [
+                {
+                  "type": "folder",
+                  "title": "pages",
+                  "description": "file name: pages",
+                  "children": [
+                    {
+                      "type": "file",
+                      "title": "pages.component.html",
+                      "description": "file name: pages.component.html"
+                    },
+                    {
+                      "type": "file",
+                      "title": "pages.component.scss",
+                      "description": "file name: pages.component.scss"
+                    },
+                    {
+                      "type": "file",
+                      "title": "pages.component.ts",
+                      "description": "file name: pages.component.ts"
+                    }
+                  ]
+                },
+                {
+                  "type": "folder",
+                  "title": "shared",
+                  "description": "file name: shared",
+                  "children": [
+                    {
+                      "type": "folder",
+                      "title": "api",
+                      "description": "file name: api",
+                      "children": []
+                    },
+                    {
+                      "type": "folder",
+                      "title": "UI",
+                      "description": "file name: UI",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "type": "file",
+                  "title": "app.component.html",
+                  "description": "file name: app.component.html"
+                },
+                {
+                  "type": "file",
+                  "title": "app.component.scss",
+                  "description": "file name: app.component.scss"
+                },
+                {
+                  "type": "file",
+                  "title": "app.component.ts",
+                  "description": "file name: app.component.ts"
+                }
+              ]
+            },
+            {
+              "type": "folder",
+              "title": "assets",
+              "description": "file name: assets",
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "title": "index.html",
+          "description": "file name: index.html"
+        },
+        {
+          "type": "file",
+          "title": "main.ts",
+          "description": "file name: main.ts"
+        },
+        {
+          "type": "file",
+          "title": "styles.scss",
+          "description": "file name: styles.scss"
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "title": "test-file-sistem",
+      "description": "file name: test-file-sistem",
+      "children": [
+        {
+          "type": "folder",
+          "title": "angular",
+          "description": "file name: angular",
+          "children": []
+        },
+        {
+          "type": "folder",
+          "title": "angular1",
+          "description": "file name: angular1",
+          "children": []
+        },
+        {
+          "type": "folder",
+          "title": "angular2",
+          "description": "file name: angular2",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+.file-structure{
+  &__file{
+    cursor: default;
+    line-height: 130%;
+    &--active{
+      color: var(--color4);
+    }
+  }
+  &__child{
+    padding-left: 15px;
+  }
+}

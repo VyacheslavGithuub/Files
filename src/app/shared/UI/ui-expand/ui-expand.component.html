@@ -1,0 +1,9 @@
+<div class="expand__header" [ngClass]="{'disabled': disabled}">
+  <div class="expand__header--triangle" [ngClass]="{'expand': expand}" (click)="toggle()"></div>
+  <div class="expand__header--content" (dblclick)="toggle()">
+    <ng-content select="[expanded]" />
+  </div>
+</div>
+<div class="expand__content" [ngClass]="{'expand': expand}">
+  <ng-content select="[content]" />
+</div>

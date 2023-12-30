@@ -1,0 +1,42 @@
+<ng-container *ngIf="fileList.type === 'file' else folder" >
+  <ng-container *ngTemplateOutlet="title; context: { context: fileList.title}"/>
+</ng-container>
+
+<ng-template #folder>
+  <ui-expand [disabled]="!(fileList.children?.length)" [expand]="searchActivated" >
+    <div expanded>
+      <ng-container *ngTemplateOutlet="title; context: { context: fileList.title}"/>
+    </div>
+    <div content class="file-structure__child">
+      <ng-container *ngFor="let itemList of fileList.children">
+        <app-file-structure
+          [fileList]="itemList"
+          [path]="path + '/' + fileList.title"
+          [searchActivated]="searchActivated"
+          [substring]="substring"
+        />
+      </ng-container>
+    </div>
+  </ui-expand>
+</ng-template>
+
+<ng-template #title let-linkName="context">
+  <a
+    class="file-structure__file"
+    routerLinkActive="file-structure__file--active"
+    queryParamsHandling="merge"
+    [routerLinkActiveOptions]="{exact:true}"
+    [routerLink]="[path + '/' + linkName]"
+    [innerHTML]="linkName | marker: substring : !!(false)"
+  >
+  </a>
+</ng-template>
+
+
+
+
+
+
+
+
+
