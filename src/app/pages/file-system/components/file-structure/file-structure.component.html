@@ -3,7 +3,7 @@
 </ng-container>
 
 <ng-template #folder>
-  <ui-expand [disabled]="!(fileList.children?.length)" [expand]="searchActivated" >
+  <ui-expand [disabled]="!(fileList.children?.length)" [expand]="false" >
     <div expanded>
       <ng-container *ngTemplateOutlet="title; context: { context: fileList.title}"/>
     </div>
@@ -27,7 +27,7 @@
     queryParamsHandling="merge"
     [routerLinkActiveOptions]="{exact:true}"
     [routerLink]="[path, linkName]"
-    [innerHTML]="linkName | marker: substring : !!(false)"
+    [innerHTML]="linkName | marker: substring"
   >
   </a>
 </ng-template>

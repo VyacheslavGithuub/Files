@@ -6,8 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MarkerPipe implements PipeTransform {
 
-  transform(value: string, substring: string | undefined, disabled?: boolean): string {
-    if (substring && !disabled){
+  transform(value: string, substring: string | undefined): string {
+    if (substring){
       const regex = new RegExp(substring, 'gi')
       const newString =
         value.replace(
