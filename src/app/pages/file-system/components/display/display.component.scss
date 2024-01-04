@@ -1,6 +1,6 @@
 .display{
   &__table{
-    padding: 24px;
+    padding: 15px;
     display: flex;
     gap: 24px;
     tr{
@@ -10,4 +10,23 @@
       text-align: left;
     }
   }
+  &__ul{
+    height: 35px;
+    display: flex;
+    border-bottom: 2px solid var(--color1);
+    align-items: center;
+    padding-left: 15px;
+
+    li{
+      opacity: 0.5;
+      cursor: pointer;
+
+      &:last-child{
+        .slash {
+          display: none;
+        }
+      }
+    }
+  }
+
 }

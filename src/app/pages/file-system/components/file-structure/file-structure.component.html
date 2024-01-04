@@ -26,7 +26,7 @@
     routerLinkActive="file-structure__file--active"
     queryParamsHandling="merge"
     [routerLinkActiveOptions]="{exact:true}"
-    [routerLink]="[path + '/' + linkName]"
+    [routerLink]="[path, linkName]"
     [innerHTML]="linkName | marker: substring : !!(false)"
   >
   </a>

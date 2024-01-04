@@ -16,11 +16,11 @@ export class FileSystemService {
 
   constructor(
     private _router: Router,
-    private apiFileSistemService: ApiFileSistemService
+    private _apiFileSistemService: ApiFileSistemService
   ) {}
 
   public getFileList(){
-    this.apiFileSistemService
+    this._apiFileSistemService
       .getFileList()
       .pipe(
         take(1)
@@ -39,67 +39,66 @@ export class FileSystemService {
   }
 
   // Сетаем value поисковика в параметр search
-  setQueryParamSearch(value: string) {
-    this._router.navigate(
+  setQueryParamSearch(value: string): Promise<boolean> {
+    return this._router.navigate(
       [],
       {
         queryParams: {search: value.length ? value : null},
       }
     )
   }
-  // Для компонента display
-  getFileDescription(urlSegments: UrlSegment[]):IFileList{
-    const activeFile = new Array<IFileList>();
 
+  // Для компонента display
+  getFileDescription(urlSegments: UrlSegment[]):IFileList[]{
+    const activeFile = new Array<IFileList>();
     const arrUrlPath:string[] = [];
 
     for (const urlItem of urlSegments) {
       arrUrlPath.push(urlItem.path)
     }
 
-    const searchFile = (file: IFileList, index: number) => {
-      activeFile.push(file)
-      if (file.children){
-        for (const fileElement of file.children) {
-          if (fileElement.title === arrUrlPath[index]){
-            searchFile(fileElement, index + 1)
-          }
-        }
-      }
-      return ;
-    }
-
     this._fileListBase.forEach((file, index) => {
       if (file.title === arrUrlPath[0]){
-        searchFile(file,1)
+        this.searchFile(file,1, activeFile, arrUrlPath)
       }
     })
     if (!activeFile.length){
-      return {
+      return [{
         type: 'Файл не найден',
         title: 'Нет названия',
         description: 'Нет описания'
+      }]
+    }
+    return activeFile
+  }
+
+  searchFile (file: IFileList, index: number, activeFile: IFileList[], arrUrlPath: string[]): void {
+    activeFile.push(file)
+    if (file.children){
+      for (const fileElement of file.children) {
+        if (fileElement.title === arrUrlPath[index]){
+          this.searchFile(fileElement, index + 1, activeFile, arrUrlPath)
+        }
       }
     }
-    return activeFile[activeFile.length - 1]
   }
 
   // Метод с которого начинаем поиск файлов
   public findFileList(title: string | undefined){
     if (title){
       const regex = new RegExp(title, 'gi')
-      return this.fileList$.next(this.testFunction(this._fileListBase, regex))
+      return this.fileList$.next(this.checkArray(this._fileListBase, regex))
     }else {
        return this.fileList$.next(this._fileListBase)
     }
   }
   //
-  testFunction(data: IFileList[], regex: RegExp){
-    let test:IFileList[] = []
-    data.forEach((item, arrIndex) =>{
-      test.push(this.filterObjectByRegex(item, regex))
-    })
-    return this.checkForEmptiness(test);
+  checkArray(data: IFileList[], regex: RegExp){
+    let arr:IFileList[] = []
+    for (const item of data) {
+      arr.push(this.filterObjectByRegex(item, regex))
+    }
+    return this.checkForEmptiness(arr);
   }
 
   checkForEmptiness(object: IFileList[]){
@@ -120,6 +119,7 @@ export class FileSystemService {
     return  test;
   }
 
+  // фильтровать объект по регулярному выражению
   filterObjectByRegex(object: IFileList, regex: RegExp){
     let newItem = {} as IFileList;
 
@@ -143,7 +143,6 @@ export class FileSystemService {
           return;
         }
       }
-      return;
     }
 
     if (this.deepIncludes(object,regex)){

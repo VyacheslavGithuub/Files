@@ -1,19 +1,13 @@
 @if (pageStatus$ | async){
   <app-layout-main>
     <div class="layout-main__left" left>
-      <input
-        type="text"
-        placeholder="Поиск ..."
-        class="layout-main__left--search"
-        (input)="setQueryParamSearch(substring)"
-        [(ngModel)]="substring"
-      >
-          <ng-container *ngFor="let fileList of fileList$ | async ">
-            <app-file-structure [fileList]="fileList" [searchActivated]="searchActivated" [substring]="substring" />
-          </ng-container>
+      <app-search (inputMethod)="setQueryParamSearch($event)" [inputValue]="baseSearchParams" />
+        @for (fileList of fileList$ | async; track fileList.title){
+          <app-file-structure [fileList]="fileList" [searchActivated]="searchActivated" [substring]="baseSearchParams" />
+        }
     </div>
     <div class="layout-main__right" right>
-      <app-display [activeFile]="activeFile"/>
+      <app-display [activeFile]="activeFile" [activePath]="activePath"/>
     </div>
   </app-layout-main>
 } @else {

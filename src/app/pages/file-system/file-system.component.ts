@@ -9,6 +9,7 @@ import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {FileStructureComponent} from "./components/file-structure/file-structure.component";
 import {UiErrorBlockComponent} from "../../shared/UI/ui-error-block/ui-error-block.component";
 import {IFileList} from "../../shared/api/api-file-sistem/api-file-sistem";
+import {SearchComponent} from "./components/search/search.component";
 
 @Component({
   selector: 'app-file-system',
@@ -26,7 +27,8 @@ import {IFileList} from "../../shared/api/api-file-sistem/api-file-sistem";
     FileStructureComponent,
     NgOptimizedImage,
     UiErrorBlockComponent,
-    NgIf
+    NgIf,
+    SearchComponent
   ],
   templateUrl: './file-system.component.html',
   styleUrl: './file-system.component.scss',
@@ -36,8 +38,9 @@ export class FileSystemComponent implements OnInit, OnDestroy {
   public pageStatus$ = this.fileSystemService.pageStatus$;
   public fileList$ = this.fileSystemService.fileList$;
   public searchActivated = false;
-  public activeFile?:IFileList;
-  public substring = ''
+  public activeFile!:IFileList;
+  public activePath!: string[];
+  public baseSearchParams = ''
 
   private _subActivatedRouteParam$?: Subscription;
   private _subActivatedRouteUrl$?: Subscription;
@@ -52,12 +55,14 @@ export class FileSystemComponent implements OnInit, OnDestroy {
       this._subActivatedRouteUrl$ = this._activatedRoute.url.subscribe((res) => {
         if (res.length){
           this.searchActivated = true;
-          this.activeFile = this.fileSystemService.getFileDescription(res)
+          const getFile = this.fileSystemService.getFileDescription(res);
+          this.activeFile = getFile[getFile.length - 1]
+          this.activePath = getFile.map(value => value.title);
         }
       })
       this._subActivatedRouteParam$ = this._activatedRoute.queryParams
         .subscribe(params => {
-              this.substring = params.search
+              this.baseSearchParams = params.search
               this.fileSystemService.findFileList(params.search);
               this.searchActivated = true;
           }
