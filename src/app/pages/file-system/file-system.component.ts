@@ -11,6 +11,7 @@ import {UiErrorBlockComponent} from "../../shared/UI/ui-error-block/ui-error-blo
 import {IFileList} from "../../shared/api/api-file-sistem/api-file-sistem";
 import {SearchComponent} from "./components/search/search.component";
 import {NavigationComponent} from "./components/navigation/navigation.component";
+import {TableComponent} from "./components/table/table.component";
 
 @Component({
   selector: 'app-file-system',
@@ -30,7 +31,8 @@ import {NavigationComponent} from "./components/navigation/navigation.component"
     UiErrorBlockComponent,
     NgIf,
     SearchComponent,
-    NavigationComponent
+    NavigationComponent,
+    TableComponent
   ],
   templateUrl: './file-system.component.html',
   styleUrl: './file-system.component.scss',
