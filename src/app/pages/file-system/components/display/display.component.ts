@@ -18,9 +18,5 @@ import {RouterLink} from "@angular/router";
 })
 export class DisplayComponent {
   @Input({required: true}) activeFile!: IFileList;
-  @Input({required: true}) activePath!: string[];
 
-  public sliceUrl(arr: string[], index: number): string {
-    return '/' + arr.slice(0, index + 1).join('/')
-  }
 }

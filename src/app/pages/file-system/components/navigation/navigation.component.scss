@@ -1,0 +1,21 @@
+.navigation{
+  border-bottom: 2px solid var(--color1);
+
+  ul{
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+  }
+
+  li{
+    opacity: 0.5;
+    cursor: pointer;
+
+    &:last-child{
+      .slash {
+        display: none;
+      }
+    }
+  }
+}

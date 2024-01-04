@@ -1,1 +1,15 @@
-<p>navigation works!</p>
+<div class="navigation">
+  <ul >
+    @for (url of activePath; track $index){
+      <li>
+        <a
+          class="url"
+          [routerLink]="sliceUrl(activePath, $index)"
+        >
+          {{url}}
+          <span class="slash">/</span>
+        </a>
+      </li>
+    }
+  </ul>
+</div>

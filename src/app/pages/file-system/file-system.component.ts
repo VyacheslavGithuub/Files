@@ -10,6 +10,7 @@ import {FileStructureComponent} from "./components/file-structure/file-structure
 import {UiErrorBlockComponent} from "../../shared/UI/ui-error-block/ui-error-block.component";
 import {IFileList} from "../../shared/api/api-file-sistem/api-file-sistem";
 import {SearchComponent} from "./components/search/search.component";
+import {NavigationComponent} from "./components/navigation/navigation.component";
 
 @Component({
   selector: 'app-file-system',
@@ -28,7 +29,8 @@ import {SearchComponent} from "./components/search/search.component";
     NgOptimizedImage,
     UiErrorBlockComponent,
     NgIf,
-    SearchComponent
+    SearchComponent,
+    NavigationComponent
   ],
   templateUrl: './file-system.component.html',
   styleUrl: './file-system.component.scss',
