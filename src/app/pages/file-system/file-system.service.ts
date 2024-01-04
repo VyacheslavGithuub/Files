@@ -48,7 +48,7 @@ export class FileSystemService {
     )
   }
 
-  // Для компонента display
+  // Получаем массив активных файлов
   getFileDescription(urlSegments: UrlSegment[]):IFileList[]{
     const activeFile = new Array<IFileList>();
     const arrUrlPath:string[] = [];
@@ -71,7 +71,7 @@ export class FileSystemService {
     }
     return activeFile
   }
-
+  // Вспомогательный метод который формирует новый массив активыных файлов
   searchFile (file: IFileList, index: number, activeFile: IFileList[], arrUrlPath: string[]): void {
     activeFile.push(file)
     if (file.children){
@@ -92,7 +92,7 @@ export class FileSystemService {
        return this.fileList$.next(this._fileListBase)
     }
   }
-  //
+  // Возвращаем полностью отсортированную структуру
   checkArray(data: IFileList[], regex: RegExp){
     let arr:IFileList[] = []
     for (const item of data) {
@@ -101,22 +101,26 @@ export class FileSystemService {
     return this.checkForEmptiness(arr);
   }
 
+  // Вспомогательный метод, который формирует, массив не пустых объектов
+  // И если все проверенные массивы пусты возвращает статичный ответ
   checkForEmptiness(object: IFileList[]){
-    const test = new Array<IFileList>();
+    const newArr = new Array<IFileList>();
+
     for (const item of object) {
       if (Object.keys(item).length > 0){
-        test.push(item);
+        newArr.push(item);
       }
     }
-    if (!test.length){
+
+    if (!newArr.length){
       const errObject:IFileList = {
         type: 'file',
         title: 'Файл или папка не найдены',
         description: ''
       }
-      test.push(errObject)
+      newArr.push(errObject)
     }
-    return  test;
+    return  newArr;
   }
 
   // фильтровать объект по регулярному выражению

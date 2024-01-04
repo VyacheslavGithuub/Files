@@ -2,7 +2,6 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/co
 import {LayoutMainComponent} from "../../shared/layout/layout-main/layout-main.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ActivatedRoute, RouterOutlet} from "@angular/router";
-import {DisplayComponent} from "./components/display/display.component";
 import {Subscription} from "rxjs";
 import {FileSystemService} from "./file-system.service";
 import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
@@ -22,7 +21,6 @@ import {TableComponent} from "./components/table/table.component";
     FileStructureComponent,
     ReactiveFormsModule,
     RouterOutlet,
-    DisplayComponent,
     AsyncPipe,
     FileStructureComponent,
     NgForOf,

@@ -14,5 +14,4 @@ import {IFileList} from "../../../../shared/api/api-file-sistem/api-file-sistem"
 })
 export class TableComponent {
   @Input({required: true}) activeFile!: IFileList;
-
 }
