@@ -1,12 +1,18 @@
 @if (pageStatus$ | async){
   <app-layout-main>
-    <div class="layout-main__left" left>
+    <div left>
       <app-search (inputMethod)="setQueryParamSearch($event)" [inputValue]="baseSearchParams" />
+      <div class="test">
         @for (fileList of fileList$ | async; track fileList.title){
-          <app-file-structure [fileList]="fileList" [searchActivated]="searchActivated" [substring]="baseSearchParams" />
+          <app-file-structure
+            [fileList]="fileList"
+            [searchActivated]="searchActivated"
+            [substring]="baseSearchParams"
+          />
         }
+      </div>
     </div>
-    <div class="layout-main__right" right>
+    <div right>
       <app-navigation [activePath]="activePath"/>
       <app-table [activeFile]="activeFile" />
     </div>

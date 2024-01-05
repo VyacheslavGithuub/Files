@@ -51,118 +51,510 @@
                       "children": [
                         {
                           "type": "folder",
-                          "title": "file-structure",
-                          "description": "Самовызывающийся компонент, отвечает за отображение файловой структуры",
+                          "title": "components",
+                          "description": "Тут лежат компоненты из которых собирается страница, они должны быть простыми!",
+                          "children": [
+                            {
+                              "type": "folder",
+                              "title": "file-structure",
+                              "description": "Самовызывающийся компонент, отвечает за отображение файловой структуры",
+                              "children": [
+                                {
+                                  "type": "file",
+                                  "title": "file-structure.component.html",
+                                  "description": "Шаблон"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "file-structure.component.scss",
+                                  "description": "Стили"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "file-structure.component.ts",
+                                  "description": "Компонент"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "folder",
+                              "title": "navigation",
+                              "description": "Компонент с табами, они активны, можно покликать",
+                              "children": [
+                                {
+                                  "type": "file",
+                                  "title": "navigation.component.html",
+                                  "description": "Шаблон"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "navigation.component.scss",
+                                  "description": "Стили"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "navigation.component.ts",
+                                  "description": "Компонент"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "folder",
+                              "title": "search",
+                              "description": "Поисковик",
+                              "children": [
+                                {
+                                  "type": "file",
+                                  "title": "search.component.html",
+                                  "description": "Шаблон"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "search.component.scss",
+                                  "description": "Стили"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "search.component.ts",
+                                  "description": "Компонент"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "folder",
+                              "title": "table",
+                              "description": "Компонент, для отображения данных по активному объекту, в таблице",
+                              "children": [
+                                {
+                                  "type": "file",
+                                  "title": "table.component.html",
+                                  "description": "Шаблон"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "table.component.scss",
+                                  "description": "Стили"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "table.component.ts",
+                                  "description": "Компонент"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "file",
+                          "title": "file-system.component.html",
+                          "description": "Шаблон стрницы"
+                        },
+                        {
+                          "type": "file",
+                          "title": "file-system.component.scss",
+                          "description": "Стили страницы"
+                        },
+                        {
+                          "type": "file",
+                          "title": "file-system.component.ts",
+                          "description": "Сложный компонент, обрабатывает некоторую логику, и распределяет данные по компонентам из папки components"
+                        },
+                        {
+                          "type": "file",
+                          "title": "file-system.service.ts",
+                          "description": "Сплашная логика, разработанная для конкретной страницы"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "folder",
+                  "title": "shared",
+                  "description": "Вспомогательная папка, многофункциональна",
+                  "children": [
+                    {
+                      "type": "folder",
+                      "title": "api",
+                      "description": "Папочка с запросами на сервер",
+                      "children": [
+                        {
+                          "type": "folder",
+                          "title": "api-file-sistem",
+                          "description": "Папка объединяющая в себе два логически связанных файла: запросы, типизация запросов",
                           "children": [
                             {
                               "type": "file",
-                              "title": "file-structure.component.html",
+                              "title": "api-file-sistem.d.ts",
+                              "description": "Файл с типами, для конкретного файла с запросами"
+                            },
+                            {
+                              "type": "file",
+                              "title": "api-file-sistem.service.ts",
+                              "description": "Сервис с запросами связанных с file-sistem"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "folder",
+                      "title": "helpers",
+                      "description": "helpers === переиспользуемая логика",
+                      "children": [
+                        {
+                          "type": "folder",
+                          "title": "pipe",
+                          "description": "Пайпы которые могут быть переиспользуемы",
+                          "children": [
+                            {
+                              "type": "file",
+                              "title": "marker.pipe.ts",
+                              "description": "Принимает аргументом строку и подстроку, если подстрока пуста возвращает пустую строку, иначе красит буквы, которые соответствуют подстроке"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "folder",
+                      "title": "layout",
+                      "description": "В проекте может быть несколько шаблонов, например: один для авторизации, а второй для содержимого страниц...",
+                      "children": [
+                        {
+                          "type": "folder",
+                          "title": "layout-main",
+                          "description": "Для страницы file-system используется layout-main",
+                          "children": [
+                            {
+                              "type": "file",
+                              "title": "layout-main.component.html",
                               "description": "Шаблон"
                             },
                             {
                               "type": "file",
-                              "title": "file-structure.component.scss",
+                              "title": "layout-main.component.scss",
                               "description": "Стили"
                             },
                             {
                               "type": "file",
-                              "title": "file-structure.component.ts",
+                              "title": "layout-main.component.ts",
+                              "description": "Компонент"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "folder",
+                      "title": "UI",
+                      "description": "UI === переиспользуемые компоненты",
+                      "children": [
+                        {
+                          "type": "folder",
+                          "title": "ui-error-block",
+                          "description": "Компонент который мы можем отобразить если сервер вернет ошибку, например: url будет не верным :)",
+                          "children": [
+                            {
+                              "type": "file",
+                              "title": "ui-error-block.component.html",
+                              "description": "Шаблон"
+                            },
+                            {
+                              "type": "file",
+                              "title": "ui-error-block.component.scss",
+                              "description": "Стили"
+                            },
+                            {
+                              "type": "file",
+                              "title": "ui-error-block.component.ts",
                               "description": "Компонент"
                             }
                           ]
                         },
                         {
                           "type": "folder",
-                          "title": "navigation",
-                          "description": "Компонент с табами, они активны, можно покликать",
+                          "title": "ui-expand",
+                          "description": "компонет позволяющий скрыть/отобразить часть информации",
                           "children": [
                             {
                               "type": "file",
-                              "title": "navigation.component.html",
+                              "title": "ui-expand.component.html",
                               "description": "Шаблон"
                             },
                             {
                               "type": "file",
-                              "title": "navigation.component.scss",
+                              "title": "ui-expand.component.scss",
                               "description": "Стили"
                             },
                             {
                               "type": "file",
-                              "title": "navigation.component.ts",
+                              "title": "ui-expand.component.ts",
                               "description": "Компонент"
                             }
                           ]
-                        },
-                        {
-                          "type": "folder",
-                          "title": "search",
-                          "description": "Поисковик",
-                          "children": [
-                            {
-                              "type": "file",
-                              "title": "search.component.html",
-                              "description": "Шаблон"
-                            },
-                            {
-                              "type": "file",
-                              "title": "search.component.scss",
-                              "description": "Стили"
-                            },
-                            {
-                              "type": "file",
-                              "title": "search.component.ts",
-                              "description": "Компонент"
-                            }
-                          ]
-                        },
-                        {
-                          "type": "folder",
-                          "title": "table",
-                          "description": "Компонент, для отображения данных по активному объекту, в таблице",
-                          "children": [
-                            {
-                              "type": "file",
-                              "title": "table.component.html",
-                              "description": "Шаблон"
-                            },
-                            {
-                              "type": "file",
-                              "title": "table.component.scss",
-                              "description": "Стили"
-                            },
-                            {
-                              "type": "file",
-                              "title": "table.component.ts",
-                              "description": "Компонент"
-                            }
-                          ]
-                        },
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "file",
+                  "title": "app.component.html",
+                  "description": "file name: app.component.html"
+                },
+                {
+                  "type": "file",
+                  "title": "app.component.scss",
+                  "description": "file name: app.component.scss"
+                },
+                {
+                  "type": "file",
+                  "title": "app.component.spec.ts",
+                  "description": "file name: app.component.spec.ts"
+                },
+                {
+                  "type": "file",
+                  "title": "app.component.ts",
+                  "description": "file name: app.component.ts"
+                },
+                {
+                  "type": "file",
+                  "title": "app.config.ts",
+                  "description": "file name: app.config.ts"
+                },
+                {
+                  "type": "file",
+                  "title": "app.routes.ts",
+                  "description": "file name: app.routes.ts"
+                }
+              ]
+            },
+            {
+              "type": "folder",
+              "title": "assets",
+              "description": "folder name: assets",
+              "children": []
+            },
+            {
+              "type": "folder",
+              "title": "environments",
+              "description": "Окружающая среда",
+              "children": [
+                {
+                  "type": "file",
+                  "title": "environment.development.ts",
+                  "description": "Храним baseUrl для теста"
+                },
+                {
+                  "type": "file",
+                  "title": "environment.ts",
+                  "description": "Храним baseUrl для разработки"
+                }
+              ]
+            },
+            {
+              "type": "file",
+              "title": "index.html",
+              "description": "Входная точка для приложения"
+            },
+            {
+              "type": "file",
+              "title": "main.ts",
+              "description": "необходим для запуска в режиме разработки, использует JIT-компиляцию; polyfills"
+            },
+            {
+              "type": "file",
+              "title": "styles.scss",
+              "description": "Глобальный файл со стилями"
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "title": "angular.json",
+          "description": "Файл с настройками для углового"
+        },
+        {
+          "type": "file",
+          "title": "package.json",
+          "description": "Файл с версиями пакетов, которые нужно ставить"
+        },
+        {
+          "type": "file",
+          "title": "package-lock.json",
+          "description": "Для создания папки node_modules"
+        },
+        {
+          "type": "file",
+          "title": "README.md",
+          "description": "Файл с описанием проекта"
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "title": "copy-file-sistem",
+      "description": "Папка с проектом",
+      "children": [
+        {
+          "type": "folder",
+          "title": "angular",
+          "description": "file name: angular",
+          "children": []
+        },
+        {
+          "type": "folder",
+          "title": "node_modules",
+          "description": "file name: node_modules",
+          "children": []
+        },
+        {
+          "type": "folder",
+          "title": "server",
+          "description": "Тут лежит база данных",
+          "children": [
+            {
+              "type": "file",
+              "title": "db.json",
+              "description": "база данных называется db.json"
+            }
+          ]
+        },
+        {
+          "type": "folder",
+          "title": "src",
+          "description": "Основная папка для разработки",
+          "children": [
+            {
+              "type": "folder",
+              "title": "app",
+              "description": "application program interface",
+              "children": [
+                {
+                  "type": "folder",
+                  "title": "pages",
+                  "description": "Странички",
+                  "children": [
+                    {
+                      "type": "folder",
+                      "title": "file-system",
+                      "description": "Страница на который ты сейчас находишься, была разработана в этой папке :)",
+                      "children": [
                         {
                           "type": "folder",
                           "title": "components",
                           "description": "Тут лежат компоненты из которых собирается страница, они должны быть простыми!",
                           "children": [
                             {
-                              "type": "file",
-                              "title": "file-system.component.html",
-                              "description": "Шаблон стрницы"
+                              "type": "folder",
+                              "title": "file-structure",
+                              "description": "Самовызывающийся компонент, отвечает за отображение файловой структуры",
+                              "children": [
+                                {
+                                  "type": "file",
+                                  "title": "file-structure.component.html",
+                                  "description": "Шаблон"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "file-structure.component.scss",
+                                  "description": "Стили"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "file-structure.component.ts",
+                                  "description": "Компонент"
+                                }
+                              ]
                             },
                             {
-                              "type": "file",
-                              "title": "file-system.component.scss",
-                              "description": "Стили страницы"
+                              "type": "folder",
+                              "title": "navigation",
+                              "description": "Компонент с табами, они активны, можно покликать",
+                              "children": [
+                                {
+                                  "type": "file",
+                                  "title": "navigation.component.html",
+                                  "description": "Шаблон"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "navigation.component.scss",
+                                  "description": "Стили"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "navigation.component.ts",
+                                  "description": "Компонент"
+                                }
+                              ]
                             },
                             {
-                              "type": "file",
-                              "title": "file-system.component.ts",
-                              "description": "Сложный компонент, обрабатывает некоторую логику, и распределяет данные по компонентам из папки components"
+                              "type": "folder",
+                              "title": "search",
+                              "description": "Поисковик",
+                              "children": [
+                                {
+                                  "type": "file",
+                                  "title": "search.component.html",
+                                  "description": "Шаблон"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "search.component.scss",
+                                  "description": "Стили"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "search.component.ts",
+                                  "description": "Компонент"
+                                }
+                              ]
                             },
                             {
-                              "type": "file",
-                              "title": "file-system.service.ts",
-                              "description": "Сплашная логика, разработанная для конкретной страницы"
+                              "type": "folder",
+                              "title": "table",
+                              "description": "Компонент, для отображения данных по активному объекту, в таблице",
+                              "children": [
+                                {
+                                  "type": "file",
+                                  "title": "table.component.html",
+                                  "description": "Шаблон"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "table.component.scss",
+                                  "description": "Стили"
+                                },
+                                {
+                                  "type": "file",
+                                  "title": "table.component.ts",
+                                  "description": "Компонент"
+                                }
+                              ]
                             }
                           ]
+                        },
+                        {
+                          "type": "file",
+                          "title": "file-system.component.html",
+                          "description": "Шаблон стрницы"
+                        },
+                        {
+                          "type": "file",
+                          "title": "file-system.component.scss",
+                          "description": "Стили страницы"
+                        },
+                        {
+                          "type": "file",
+                          "title": "file-system.component.ts",
+                          "description": "Сложный компонент, обрабатывает некоторую логику, и распределяет данные по компонентам из папки components"
+                        },
+                        {
+                          "type": "file",
+                          "title": "file-system.service.ts",
+                          "description": "Сплашная логика, разработанная для конкретной страницы"
                         }
                       ]
                     }

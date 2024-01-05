@@ -3,7 +3,7 @@
 </ng-container>
 
 <ng-template #folder>
-  <ui-expand [disabled]="!(fileList.children?.length)" [expand]="false" >
+  <ui-expand [disabled]="!(fileList.children?.length)" [expand]="true" >
     <div expanded>
       <ng-container *ngTemplateOutlet="title; context: { context: fileList.title}"/>
     </div>

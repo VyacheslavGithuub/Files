@@ -39,7 +39,7 @@ export class FileSystemService {
   }
 
   // Сетаем value поисковика в параметр search
-  setQueryParamSearch(value: string): Promise<boolean> {
+  setQueryParamSearch(value: string) {
     return this._router.navigate(
       [],
       {
@@ -49,7 +49,7 @@ export class FileSystemService {
   }
 
   // Получаем массив активных файлов
-  getFileDescription(urlSegments: UrlSegment[]):IFileList[]{
+  getFileDescription(urlSegments: UrlSegment[]){
     const activeFile = new Array<IFileList>();
     const arrUrlPath:string[] = [];
 
@@ -156,7 +156,7 @@ export class FileSystemService {
     return newItem
   }
 
-  // Данная функция нужна, для проверки значения внутри объекта
+  // Для проверки значения внутри объекта
   deepIncludes(activeItem: IFileList, regex: RegExp){
     // Если title текущего объекта совпадает
     if (activeItem.title.match(regex)) {
