@@ -88,9 +88,9 @@ export class FileSystemService {
     if (title){
       const regex = new RegExp(title, 'gi')
       return this.fileList$.next(this.checkArray(this._fileListBase, regex))
-    }else {
-       return this.fileList$.next(this._fileListBase)
     }
+    return this.fileList$.next(this._fileListBase)
+
   }
   // Возвращаем полностью отсортированную структуру
   checkArray(data: IFileList[], regex: RegExp){
@@ -125,35 +125,69 @@ export class FileSystemService {
 
   // фильтровать объект по регулярному выражению
   filterObjectByRegex(object: IFileList, regex: RegExp){
-    let newItem = {} as IFileList;
 
-    const filterObject = (itemList: IFileList, newObject: IFileList) => {
+    const filterObject = (itemList: IFileList, newObject: IFileList):IFileList => {
       // Есть ли внутри сходства
       if (this.deepIncludes(itemList, regex)){
-        // Проверяем дату на пустоту
-        if(itemList.children){
-          // Проверяем каждый вложенный элемент на сходства
-          itemList.children.forEach((item, index) => {
-            if (this.deepIncludes(item, regex)){
-              // И пополняем новй объект
-              newObject.children && newObject.children.push({...item, children: []})
+        if (newObject.children){
+          newObject.children.push({...itemList, children: []})
+        }
+
+        if(itemList.children?.length){
+          itemList.children.forEach((value, index) => {
+            if (newObject.children){
+            //   filterObject(value, newObject.children[0])
+              testFilterObject(value, newObject.children[0])
             }
           })
-          // Вызваем filterObject для всех оставшихся объектов
-          itemList.children.forEach((item, index) => {
-            newObject.children && filterObject(item, newObject.children[0])
-          })
-        }else {
-          return;
         }
       }
+      return newObject;
+    }
+    const testFilterObject = (itemList: IFileList, newObject: IFileList):IFileList => {
+      // Есть ли внутри сходства
+      if (this.deepIncludes(itemList, regex)){
+        if (newObject.children){
+          newObject.children.push({...itemList, children: []})
+        }
+
+        if(itemList.children?.length){
+          let newArr = {} as IFileList
+          if (newObject.children){
+            for (const item of newObject.children) {
+                if (item.title === itemList.title){
+                  newArr = item
+                }
+            }
+          }
+
+          itemList.children.forEach((value, index) => {
+            if (newObject.children){
+              // filterObject(value, newArr)
+              testFilterObject(value, newArr)
+            }
+          })
+        }
+      }
+      return newObject;
     }
 
-    if (this.deepIncludes(object,regex)){
-      newItem = {...object, children: []}
-      filterObject(object, newItem)
-    }
-    return newItem
+    // const testFilterObject1 = (itemList: IFileList, newObject: IFileList):IFileList => {
+    //   // Есть ли внутри сходства
+    //   if (this.deepIncludes(itemList, regex)){
+    //     // if (newObject.children){
+    //     //   newObject.children.push({...itemList, children: []})
+    //     // }
+    //     console.log(newObject)
+    //   }
+    //   return newObject;
+    // }
+    return filterObject(object, {
+      type: '',
+      title: '',
+      description: '',
+      children: []
+    })
   }
 
   // Для проверки значения внутри объекта
