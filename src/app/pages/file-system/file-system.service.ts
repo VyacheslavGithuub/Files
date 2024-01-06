@@ -148,7 +148,7 @@ export class FileSystemService {
             for (const item of newObject.children) {
                 // Если есть в новом объекте title схожий с title активного объекта то сохраняем его
                 if (item.title === itemList.title){
-                  return newArr = item
+                  newArr = item
                 }
             }
           }
