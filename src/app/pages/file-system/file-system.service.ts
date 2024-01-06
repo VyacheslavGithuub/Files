@@ -125,69 +125,47 @@ export class FileSystemService {
 
   // фильтровать объект по регулярному выражению
   filterObjectByRegex(object: IFileList, regex: RegExp){
-
-    const filterObject = (itemList: IFileList, newObject: IFileList):IFileList => {
-      // Есть ли внутри сходства
-      if (this.deepIncludes(itemList, regex)){
-        if (newObject.children){
-          newObject.children.push({...itemList, children: []})
-        }
-
-        if(itemList.children?.length){
-          itemList.children.forEach((value, index) => {
-            if (newObject.children){
-            //   filterObject(value, newObject.children[0])
-              testFilterObject(value, newObject.children[0])
-            }
-          })
-        }
+    // Фильруем объект
+    const filterObject = (itemList: IFileList, newObject?: IFileList):IFileList  => {
+      // Изначально объект пустой, в качестве инициализирующих данных берем самый первый объект
+      if (!newObject){
+        newObject = {...itemList, children: []}
       }
-      return newObject;
-    }
-    const testFilterObject = (itemList: IFileList, newObject: IFileList):IFileList => {
-      // Есть ли внутри сходства
+      // Есть ли внутри текущего объекта есть сходства
+      // Продолжаем работу
       if (this.deepIncludes(itemList, regex)){
+        // В типе IFileList поле children не обязательно
+        // Так как у файлов нет такого поля
         if (newObject.children){
           newObject.children.push({...itemList, children: []})
         }
-
+        // Проверяем у текущего объекта массив children на длину
         if(itemList.children?.length){
+          // создаём новый объект с типом IFileList
           let newArr = {} as IFileList
+          // Проверям newObject на наличие children
           if (newObject.children){
             for (const item of newObject.children) {
+                // Если есть в новом объекте title схожий с title активного объекта то сохраняем его
                 if (item.title === itemList.title){
-                  newArr = item
+                  return newArr = item
                 }
             }
           }
 
           itemList.children.forEach((value, index) => {
-            if (newObject.children){
-              // filterObject(value, newArr)
-              testFilterObject(value, newArr)
+            if (newObject?.children){
+              // Повторяем процедуру но уже с новыми данными которые были подготовлены ранее
+              filterObject(value, newArr)
             }
           })
         }
       }
+      // Иначе возвращаем то что успело собраться в newObject
       return newObject;
     }
 
-    // const testFilterObject1 = (itemList: IFileList, newObject: IFileList):IFileList => {
-    //   // Есть ли внутри сходства
-    //   if (this.deepIncludes(itemList, regex)){
-    //     // if (newObject.children){
-    //     //   newObject.children.push({...itemList, children: []})
-    //     // }
-    //     console.log(newObject)
-    //   }
-    //   return newObject;
-    // }
-    return filterObject(object, {
-      type: '',
-      title: '',
-      description: '',
-      children: []
-    })
+    return filterObject(object)
   }
 
   // Для проверки значения внутри объекта
